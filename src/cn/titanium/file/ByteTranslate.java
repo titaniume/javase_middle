@@ -160,17 +160,24 @@ public class ByteTranslate {
 				   eachContent = Arrays.copyOfRange(fileContent, eachSize * i, fileContent.length);
 				   
 			   }
-
+			   FileOutputStream fos = null;
 	            try {
 	                // 写出去
-	                FileOutputStream fos = new FileOutputStream(eachFile);
+	            	fos = new FileOutputStream(eachFile);
 	                fos.write(eachContent);
-	                // 记得关闭
-	                fos.close();
 	                System.out.printf("输出子文件%s，其大小是 %d字节%n", eachFile.getAbsoluteFile(), eachFile.length());
 	            } catch (IOException e) {
 	                // TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally{
+				if(null !=fos){
+					try {
+						fos.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 
 		}
@@ -180,10 +187,11 @@ public class ByteTranslate {
 	private static void murgeFile(String folder, String fileName) {
 		
 		
-		try {
+		
 			// 合并的目标文件
 			File destFile = new File(folder,fileName);
-			FileOutputStream  fos = new FileOutputStream(destFile);
+			 // 使用try-with-resource的方式自动关闭流
+			try( FileOutputStream  fos = new FileOutputStream(destFile);){	
 			int index = 0;
 			while (true) {
 				//子文件
@@ -192,17 +200,17 @@ public class ByteTranslate {
 				if(!eachFile.exists())
 					break;
 				//读取子文件的内容
-				FileInputStream fis = new FileInputStream(eachFile);
+				// 使用try-with-resource的方式自动关闭流
+				try(FileInputStream fis = new FileInputStream(eachFile)){
 				byte [] bt = new byte[(int)eachFile.length()];
 				fis.read();
 				fis.close();
 				
 				//把子文件的内容写出去
 				fos.write(bt);
-                fos.flush();
                 System.out.printf("把子文件 %s写出到目标文件中%n",eachFile);
+				}
 			}
-			 fos.close();
 	         System.out.printf("最后目标文件的大小：%,d字节" , destFile.length());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
