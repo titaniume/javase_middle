@@ -35,13 +35,22 @@ public class ArrayListVsLinkedList {
 	      modify(List, "LinkedList");
 	      
 	     //4 : 练习-在后面插入数据
-	      /*比较 ArrayList和LinkedList 在最后面插入100000条数据，谁快谁慢？为什么？*/
+	    /*  比较 ArrayList和LinkedList 在最后面插入100000条数据，谁快谁慢？为什么？*/
 	      List<Integer> inserts;
 	      inserts = new ArrayList<>();
           insertFirst(inserts, "ArrayList");
    
           inserts = new LinkedList<>();
-           insertFirst(inserts, "LinkedList");
+          insertFirst(inserts, "LinkedList");
+          
+          //4 : 练习-在中间插入数据
+          List<Integer> ls;
+          ls = new ArrayList<>();
+          insertEnd(ls, "ArrayList");
+   
+          ls = new LinkedList<>();
+          insertEnd(ls, "LinkedList");
+     
 	}
 	
 	//插入数据比较
@@ -76,6 +85,7 @@ public class ArrayListVsLinkedList {
         System.out.println();
 	}
 	
+	//在中间插入数据
 	public static void insert(List<Integer> list,String type){
 		int total = 1000 * 100;
 		final int number = 5;
@@ -86,5 +96,17 @@ public class ArrayListVsLinkedList {
 		}
 		long end = System.currentTimeMillis();
 	     System.out.printf("在%s 最中间插入%d条数据，总共耗时 %d 毫秒 %n", type, total, end - start);
+	}
+	//在结尾插入
+	public static void insertEnd(List<Integer> list,String type){
+		int total = 1000 * 100;
+		final int number = 5;
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < total; i++) {
+			 //直接add就表示插入在最后
+             list.add(number);
+		}
+		long end = System.currentTimeMillis();
+		System.out.printf("在%s 最后面插入%d条数据，总共耗时 %d 毫秒 %n", type, total, end - start);
 	}
 }
