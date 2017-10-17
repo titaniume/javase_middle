@@ -1,6 +1,8 @@
-package cn.titanium.collection;
+package cn.titanium.collection.pojo;
 
-public class Hero {
+import cn.titanium.collection.arraylist.generic.LOL;
+
+public class Hero implements LOL {
 	
 
 	public String name; //姓名

@@ -2,7 +2,7 @@ package cn.titanium.collection.arraylist;
 
 import java.util.ArrayList;
 
-import cn.titanium.collection.Hero;
+import cn.titanium.collection.pojo.Hero;
 
 /**
  * 和数组的区别

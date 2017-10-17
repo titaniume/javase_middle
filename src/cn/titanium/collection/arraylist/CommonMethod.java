@@ -2,7 +2,7 @@ package cn.titanium.collection.arraylist;
 
 import java.util.ArrayList;
 
-import cn.titanium.collection.Hero;
+import cn.titanium.collection.pojo.Hero;
 
 /**
  * 常用的方法
