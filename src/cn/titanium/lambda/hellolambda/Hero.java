@@ -2,8 +2,16 @@ package cn.titanium.lambda.hellolambda;
 public class Hero implements Comparable<Hero>{
     public String name; 
     public float hp;
-        
-    public int damage;
+      
+    public String getName() {
+		return name;
+	}
+
+	public float getHp() {
+		return hp;
+	}
+
+	public int damage;
         
     public Hero(){
            
