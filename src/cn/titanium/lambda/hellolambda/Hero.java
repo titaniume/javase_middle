@@ -28,10 +28,17 @@ public class Hero implements Comparable<Hero>{
         else
             return -1;
     }
+    public boolean matched(){
+    	   return this.hp>100 && this.damage<50;
+    }
    
     @Override
     public String toString() {
         return "Hero [name=" + name + ", hp=" + hp + ", damage=" + damage + "]\r\n";
+    }
+    
+    public int compareHero(Hero h){
+        return hp>=h.hp?-1:1;
     }
        
 }
