@@ -1,4 +1,4 @@
-package cn.titanium.multithreading.synchronization;
+package cn.titanium.multithreading.threadsafeclass;
 
 import cn.titanium.multithreading.synchronization.Hero;
 

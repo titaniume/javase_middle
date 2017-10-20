@@ -2,6 +2,8 @@ package cn.titanium.multithreading.synchronization;
 
 import java.util.LinkedList;
 
+import cn.titanium.multithreading.threadsafeclass.Stack;
+
 public class MyStack implements Stack{
     
     LinkedList<Hero> heros = new LinkedList<Hero>();
