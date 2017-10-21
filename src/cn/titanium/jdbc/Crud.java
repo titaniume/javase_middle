@@ -1,10 +1,11 @@
 package cn.titanium.jdbc;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
+
 
 
 /**
@@ -32,7 +33,7 @@ public class Crud {
 		}
 		
 	try (
-		Connection  c =(Connection)DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
+		Connection  c =DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
 				"root","root");
 		 Statement st = c.createStatement();)
 	{
@@ -70,7 +71,7 @@ public class Crud {
 		}
 
 		try (
-			Connection conn =(Connection) DriverManager.getConnection
+			Connection conn = DriverManager.getConnection
 			("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=utf-8", "root", "root");
 			Statement st=conn.createStatement();)				
 		{	

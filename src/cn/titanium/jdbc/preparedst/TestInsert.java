@@ -1,11 +1,12 @@
 package cn.titanium.jdbc.preparedst;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
+
 
 /**
  * PreparedStatement 和Statement 插入10000条数据速度比较
@@ -35,9 +36,9 @@ public class TestInsert {
 	}
 	 private static void insertByPreparedStatment(int count) {
 	        String sql = "insert into hero values(null,?,?,?)";
-	        try (Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
+	        try (Connection c =  DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
 	                "root", "root");
-	            PreparedStatement ps = (PreparedStatement) c.prepareStatement(sql);) {
+	            PreparedStatement ps =  c.prepareStatement(sql);) {
 	            for (int i = 0; i < count; i++) {
 	                ps.setString(1, "吕布");
 	                ps.setFloat(2, 313.0f);
@@ -52,9 +53,9 @@ public class TestInsert {
 	    }
 	 
 	    private static void insertStatment(int count) {
-	        try (Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
+	        try (Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
 	                "root", "root"); 
-	                Statement s = (Statement) c.createStatement();) {
+	                Statement s =  c.createStatement();) {
 	            for (int i = 0; i < count; i++) {
 	                String sql = "insert into hero values(null," + "'貂蝉'" + "," + i + "," + i + ")";
 	                s.execute(sql);             

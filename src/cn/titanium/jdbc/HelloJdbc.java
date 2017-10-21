@@ -1,10 +1,11 @@
 package cn.titanium.jdbc;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
+
 
 public class HelloJdbc {
 	public static void main(String[] args) {
@@ -51,7 +52,7 @@ public class HelloJdbc {
 	        // 编码方式 UTF-8
 	        // 账号 root
 	        // 密码 admin
-		c=(Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=utf-8", "root", "root");
+		c= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=utf-8", "root", "root");
 		st= c.createStatement();
 		// 准备sql语句
         // 注意： 字符串要用单引号'
@@ -105,7 +106,7 @@ public class HelloJdbc {
 		//7 : 使用try-with-resource的方式自动关闭连接
 		/*如果觉得上一步的关闭连接的方式很麻烦，可以参考关闭流 的方式，
 		使用try-with-resource的方式自动关闭连接，因为Connection和Statement都实现了AutoClosable接口*/
-		try(Connection conn =(Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=utf-8", "root", "root");
+		try(Connection conn =DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=utf-8", "root", "root");
 				 Statement s = conn.createStatement(); )
 		{
 			for(int i=0;i< 100;i++){

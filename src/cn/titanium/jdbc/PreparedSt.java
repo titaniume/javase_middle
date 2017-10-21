@@ -1,12 +1,13 @@
 package cn.titanium.jdbc;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
+
 
 public class PreparedSt {
 	public static void main(String[] args) {
@@ -27,10 +28,10 @@ public class PreparedSt {
 		
 		String sql ="insert into hero values(null,?,?,?)";
 
-		try (Connection conn = (Connection) DriverManager.getConnection(
+		try (Connection conn = DriverManager.getConnection(
 				"jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8",
 				"root", "root");
-				  PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);) 
+				  PreparedStatement ps = conn.prepareStatement(sql);) 
 		{
 			//设置参数
 			ps.setString(1, "亚索");
@@ -68,9 +69,9 @@ public class PreparedSt {
 		// 3 : PreparedStatement的优点2-性能表现    -->PreparedStatement有预编译机制，性能比Statement更快
 
         String sql1 = "insert into hero values(null,?,?,?)";
-        try (Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8","root", "root"); 
+        try (Connection c =  DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8","root", "root"); 
                 Statement s = c.createStatement(); 
-                PreparedStatement ps = (PreparedStatement) c.prepareStatement(sql1);
+                PreparedStatement ps = c.prepareStatement(sql1);
             ) {
             // Statement执行10次，需要10次把SQL语句传输到数据库端
             // 数据库要对每一次来的SQL语句进行编译处理
@@ -118,9 +119,9 @@ public class PreparedSt {
 	        而PreparedStatement使用的是参数设置，就不会有这个问题*/
         
         String sql2 = "select * from hero where name = ?";
-        try (Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8","root", "root");
+        try (Connection c =DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/titanium?characterEncoding=UTF-8","root", "root");
                 Statement s = c.createStatement();
-            PreparedStatement ps = (PreparedStatement) c.prepareStatement(sql2);
+            PreparedStatement ps =  c.prepareStatement(sql2);
         ) {
             // 假设name是用户提交来的数据
             String name = "'盖伦' OR 1=1";
