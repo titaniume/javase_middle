@@ -1,0 +1,2 @@
+class=cn.titanium.reflex.actualcomba.Service1
+method=doService1
